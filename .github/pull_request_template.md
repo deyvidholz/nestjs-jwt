@@ -31,6 +31,10 @@ bundle; script/server
 
 <!-- Add as sql command produced queries if new queries are added -->
 
+```sql
+# there are no new produced or changed queries
+```
+
 ## Checklist:
 
 - [ ] My code follows the style guidelines of this project
