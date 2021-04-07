@@ -34,6 +34,8 @@ $ npm install
 
 ## Running the app
 
+Ask other developers to share `.development.env`. For security reasons this file is not versioned.
+
 ```bash
 # development
 $ npm run start
