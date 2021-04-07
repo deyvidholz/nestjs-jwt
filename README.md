@@ -60,6 +60,10 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Documentation
+
+To generate the project documentation use `yarn doc`, it will generate the documentation usually on http://localhost:8080.
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
