@@ -13,7 +13,7 @@ NestJS JWT API boilerplate.
 Install yarn packages before continue
 
 ```bash
-yarn
+$ yarn
 ```
 
 Ask other developers to share `.development.env`. For security reasons this file is not versioned.
