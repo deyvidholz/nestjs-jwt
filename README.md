@@ -34,7 +34,7 @@ Check the database is up
 docker logs -f postgres
 ```
 
-Go to http://localhost:5433 to acces pgadmin UI.
+Go to http://localhost:5433 to access pgadmin UI.
 
 ## Running the app
 
