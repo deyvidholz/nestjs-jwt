@@ -6,7 +6,7 @@ NestJS JWT API boilerplate.
 
 ## Prerequisites
 
-- [`Node`](https://nodejs.org/en/download) v12 LTS
+- [`Node`](https://nodejs.org/en/download) >= 12.18.0
 - Globally [`yarn`](https://yarnpkg.com/cli/install)
 - [`Docker`](https://docs.docker.com/get-docker)
 
