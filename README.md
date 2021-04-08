@@ -25,7 +25,7 @@ Ask other developers to share `.development.env`. For security reasons this file
   this
 
 ```bash
-docker-compose up
+$ docker-compose up
 ```
 
 Check the database is up
