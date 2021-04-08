@@ -31,7 +31,7 @@ $ docker-compose up
 Check the database is up
 
 ```bash
-docker logs -f postgres
+$ docker logs -f postgres
 ```
 
 Go to http://localhost:5433 to access pgadmin UI.
