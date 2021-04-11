@@ -33,11 +33,11 @@ jobs:
       postgres:
         image: postgres:13.2-alpine
         env:
-          POSTGRES_USER: ${{ env.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
-          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          POSTGRES_USER: auth_user
+          POSTGRES_PASSWORD: auth_pass
+          POSTGRES_DB: auth_db
         ports:
-          - ${{ env.POSTGRES_PORT }}:${{ env.POSTGRES_PORT }}
+          - 5432:5432
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
