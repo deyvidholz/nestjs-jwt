@@ -33,10 +33,12 @@ jobs:
       postgres:
         image: postgres:13.2-alpine
         env:
+          # @TODO: check if it is possible to load variables from secrets or env. It didn't work since last test.
           POSTGRES_USER: auth_user
           POSTGRES_PASSWORD: auth_pass
           POSTGRES_DB: auth_db
         ports:
+          # @TODO: check if it is possible to load variables from secrets or env. It didn't work since last test.
           - 5432:5432
     steps:
       - name: Checkout code
