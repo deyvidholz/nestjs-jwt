@@ -1,7 +1,16 @@
-import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
+import * as bcrypt from 'bcryptjs';
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  Index,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class User {
+  static readonly saltRounds = 10;
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -11,4 +20,9 @@ export class User {
 
   @Column({ type: 'text' })
   password: string;
+
+  @BeforeInsert()
+  beforeInsert() {
+    this.password = bcrypt.hashSync(this.password, User.saltRounds);
+  }
 }
