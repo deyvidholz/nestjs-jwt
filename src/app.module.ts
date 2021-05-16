@@ -4,7 +4,6 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { AppService } from './app.service';
 import { User } from './entities/user.entity';
 import { LoginController } from './login.controller';
 import { LoginService } from './login.service';
@@ -39,6 +38,6 @@ import { LoginService } from './login.service';
     }),
   ],
   controllers: [LoginController],
-  providers: [AppService, LoginService],
+  providers: [LoginService],
 })
 export class AppModule {}
