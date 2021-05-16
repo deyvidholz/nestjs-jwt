@@ -25,4 +25,9 @@ export class User {
   beforeInsert() {
     this.password = bcrypt.hashSync(this.password, User.saltRounds);
   }
+
+  checkPassword(password: string) {
+    const isValidPassword = bcrypt.compareSync(password, this.password);
+    return isValidPassword;
+  }
 }
