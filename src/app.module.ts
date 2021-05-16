@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { User } from './entities/user.entity';
 
 @Module({
   imports: [
@@ -15,12 +16,16 @@ import { AppService } from './app.service';
         port: +configService.get('POSTGRES_PORT'),
         username: configService.get('POSTGRES_USER'),
         password: configService.get('POSTGRES_PASSWORD'),
-        database: configService.get('POSTGRES_DB'),
+        database:
+          process.env.NODE_ENV !== 'test'
+            ? configService.get('POSTGRES_DB')
+            : 'auth_test_db',
         autoLoadEntities: true,
         synchronize: true,
       }),
       inject: [ConfigService],
     }),
+    TypeOrmModule.forFeature([User]),
   ],
   controllers: [AppController],
   providers: [AppService],
