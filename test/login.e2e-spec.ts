@@ -3,7 +3,9 @@ import { INestApplication } from '@nestjs/common';
 import * as faker from 'faker';
 import { StatusCodes } from 'http-status-codes';
 import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
+import { factory, useRefreshDatabase, useSeeding } from 'typeorm-seeding';
+import { AppModule } from '../src/app.module';
+import { User } from '../src/entities/user.entity';
 
 describe('A user make a request to the authentication in the system', () => {
   let app: INestApplication;
@@ -25,6 +27,9 @@ describe('A user make a request to the authentication in the system', () => {
 
     app = moduleFixture.createNestApplication();
     await app.init();
+
+    await useRefreshDatabase({ configName: 'typeorm-seeding.config.ts' });
+    await useSeeding();
   });
 
   it('should return http status code 400 when email or password is bad formated', () =>
@@ -42,19 +47,31 @@ describe('A user make a request to the authentication in the system', () => {
       .send(makePayload())
       .expect(StatusCodes.UNAUTHORIZED));
 
-  it('should return http status code 401 when email is registered and password is incorrect', () =>
-    request(app.getHttpServer())
-      .post('/login')
-      // TODO: change this payload to registered email
-      .send(makePayload())
-      .expect(StatusCodes.UNAUTHORIZED));
+  it('should return http status code 401 when email is registered and password is incorrect', async () => {
+    const user = await factory(User)().create();
+    const payload = makePayload({
+      username: user.email,
+      password: faker.internet.password(),
+    });
 
-  it('should return http status code 200 when valid credentials is given', () =>
-    request(app.getHttpServer())
+    await request(app.getHttpServer())
       .post('/login')
-      // TODO: change this payload to valid credentials
-      .send(makePayload())
-      .expect(StatusCodes.OK));
+      .send(payload)
+      .expect(StatusCodes.UNAUTHORIZED);
+  });
+
+  it('should return http status code 200 when valid credentials is given', async () => {
+    const user = await factory(User)().create();
+    const payload = makePayload({
+      username: user.email,
+      password: user.email,
+    });
+
+    await request(app.getHttpServer())
+      .post('/login')
+      .send(payload)
+      .expect(StatusCodes.OK);
+  });
 
   afterAll(async () => {
     // FIXME: this line was added to avoid jest open handle error. https://github.com/visionmedia/supertest/issues/520#issuecomment-475854128
