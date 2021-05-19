@@ -26,7 +26,7 @@ export class User {
     this.password = bcrypt.hashSync(this.password, User.saltRounds);
   }
 
-  checkPassword(password: string) {
+  isValidPassword(password: string): boolean {
     const isValidPassword = bcrypt.compareSync(password, this.password);
     return isValidPassword;
   }
