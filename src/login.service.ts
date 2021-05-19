@@ -7,8 +7,7 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
-import { JwtInterface } from './interfaces/jwt.interface';
-import { JwtPayload } from './types/jwtPayload.type';
+import { JWT, JWTResult } from './typings/jwt.typing';
 
 @Injectable()
 export class LoginService {
@@ -18,7 +17,7 @@ export class LoginService {
     private jwtService: JwtService,
   ) {}
 
-  async login(username: string, password: string): Promise<JwtInterface> {
+  async login(username: string, password: string): Promise<JWTResult> {
     const emptyCredentials = !username || !password;
 
     if (emptyCredentials) {
@@ -37,8 +36,8 @@ export class LoginService {
       throw new UnauthorizedException();
     }
 
-    const payload: JwtPayload = { username: user.email, sub: user.id };
-    const jwt: JwtInterface = {
+    const payload: JWT = { username: user.email, sub: user.id };
+    const jwt: JWTResult = {
       accessToken: this.jwtService.sign(payload),
     };
 
