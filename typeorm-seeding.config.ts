@@ -1,4 +1,3 @@
-// TODO: add type
 const typeormForSeedConfig = {
   type: 'postgres',
   host: process.env.POSTGRES_HOST,
