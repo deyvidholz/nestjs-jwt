@@ -9,7 +9,6 @@ import { User } from '../src/entities/user.entity';
 describe('A user make a request to the authentication in the system', () => {
   let app: INestApplication;
 
-  // TODO: change payload type to Partial<LoginDTO>
   const makePayload = (payload?: { username?: string; password?: string }) =>
     Object.assign(
       {
