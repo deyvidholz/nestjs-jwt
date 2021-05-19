@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, HttpStatus } from '@nestjs/common';
 import * as faker from 'faker';
-import { StatusCodes } from 'http-status-codes';
 import * as request from 'supertest';
 import { factory, useRefreshDatabase, useSeeding } from 'typeorm-seeding';
 import { AppModule } from '../src/app.module';
@@ -35,17 +34,14 @@ describe('A user make a request to the authentication in the system', () => {
   it('should return http status code 400 when email or password is bad formated', () =>
     request(app.getHttpServer())
       .post('/login')
-      .send({
-        username: '',
-        password: '',
-      })
-      .expect(StatusCodes.BAD_REQUEST));
+      .send({ username: '', password: '' })
+      .expect(HttpStatus.BAD_REQUEST));
 
   it('should return http status code 401 when email is non-registered', () =>
     request(app.getHttpServer())
       .post('/login')
       .send(makePayload())
-      .expect(StatusCodes.UNAUTHORIZED));
+      .expect(HttpStatus.UNAUTHORIZED));
 
   it('should return http status code 401 when email is registered and password is incorrect', async () => {
     const user = await factory(User)().create();
@@ -57,7 +53,7 @@ describe('A user make a request to the authentication in the system', () => {
     await request(app.getHttpServer())
       .post('/login')
       .send(payload)
-      .expect(StatusCodes.UNAUTHORIZED);
+      .expect(HttpStatus.UNAUTHORIZED);
   });
 
   it('should return http status code 200 when valid credentials is given', async () => {
@@ -70,7 +66,7 @@ describe('A user make a request to the authentication in the system', () => {
     await request(app.getHttpServer())
       .post('/login')
       .send(payload)
-      .expect(StatusCodes.OK);
+      .expect(HttpStatus.OK);
   });
 
   afterAll(async () => {
