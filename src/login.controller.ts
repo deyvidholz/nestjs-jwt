@@ -1,5 +1,4 @@
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
-import { StatusCodes } from 'http-status-codes';
+import { Body, Controller, HttpCode, Post, HttpStatus } from '@nestjs/common';
 import { LoginService } from './login.service';
 
 @Controller('login')
@@ -7,7 +6,7 @@ export class LoginController {
   constructor(private readonly loginService: LoginService) {}
 
   @Post()
-  @HttpCode(StatusCodes.OK)
+  @HttpCode(HttpStatus.OK)
   login(
     @Body('username') username: string,
     @Body('password') password: string,
