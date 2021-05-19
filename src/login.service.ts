@@ -7,6 +7,8 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
+import { JwtInterface } from './interfaces/jwt.interface';
+import { JwtPayload } from './types/jwtPayload.type';
 
 @Injectable()
 export class LoginService {
@@ -16,10 +18,10 @@ export class LoginService {
     private jwtService: JwtService,
   ) {}
 
-  async login(username: string, password: string) {
-    const badInput = !username || !password;
+  async login(username: string, password: string): Promise<JwtInterface> {
+    const emptyCredentials = !username || !password;
 
-    if (badInput) {
+    if (emptyCredentials) {
       throw new BadRequestException();
     }
 
@@ -29,14 +31,14 @@ export class LoginService {
       throw new UnauthorizedException();
     }
 
-    const isInvalidPassword = !user.checkPassword(password);
+    const isInvalidPassword = !user.isValidPassword(password);
 
     if (isInvalidPassword) {
       throw new UnauthorizedException();
     }
 
-    const payload = { username: user.email, sub: user.id };
-    const jwt = {
+    const payload: JwtPayload = { username: user.email, sub: user.id };
+    const jwt: JwtInterface = {
       accessToken: this.jwtService.sign(payload),
     };
 
