@@ -1,5 +1,4 @@
 export type JWT = {
-  username: string;
   sub: string;
 };
 
