@@ -58,8 +58,8 @@ describe('A user make a request to the authentication in the system', () => {
   });
 
   it('should return valid jwt when valid credentials is given', async () => {
-    const { id, email, password } = await factory(User)().create();
-    const payload = makePayload({ username: email, password });
+    const { id, email } = await factory(User)().create();
+    const payload = makePayload({ username: email, password: email });
     const { body, status } = await request(app.getHttpServer())
       .post('/login')
       .send(payload);
