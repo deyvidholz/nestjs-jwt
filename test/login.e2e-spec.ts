@@ -58,14 +58,16 @@ describe('A user make a request to the authentication in the system', () => {
   });
 
   it('should return valid jwt when valid credentials is given', async () => {
-    const user = await factory(User)().create();
-    const payload = makePayload({ username: user.email, password: user.email });
-    const res = await request(app.getHttpServer()).post('/login').send(payload);
+    const { id, email, password } = await factory(User)().create();
+    const payload = makePayload({ username: email, password });
+    const { body, status } = await request(app.getHttpServer())
+      .post('/login')
+      .send(payload);
     const jwtExpiresIn = app.get(ConfigService).get('JWT_EXPIRES_IN');
 
-    expect(res.status).toBe(HttpStatus.OK);
-    expect(res.body.accessToken).toBeTokenMatching({ sub: user.id });
-    expect(res.body.accessToken).toBeTokenExpiringIn(jwtExpiresIn);
+    expect(status).toBe(HttpStatus.OK);
+    expect(body.accessToken).toBeTokenMatching({ sub: id });
+    expect(body.accessToken).toBeTokenExpiringIn(jwtExpiresIn);
   });
 
   afterAll(async () => {
