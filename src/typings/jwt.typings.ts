@@ -1,7 +1,7 @@
-export type JWT = {
+export type Jwt = {
   sub: string;
 };
 
-export type JWTResult = {
+export type JwtResult = {
   accessToken: string;
 };

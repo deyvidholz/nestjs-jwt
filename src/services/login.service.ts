@@ -8,7 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { LoginDTO } from '../dtos/login.dto';
 import { User } from '../entities/user.entity';
-import { JWT, JWTResult } from '../typings/jwt.typings';
+import { Jwt, JwtResult } from '../typings/jwt.typings';
 
 @Injectable()
 export class LoginService {
@@ -18,7 +18,7 @@ export class LoginService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async login({ username, password }: LoginDTO): Promise<JWTResult> {
+  async login({ username, password }: LoginDTO): Promise<JwtResult> {
     const isEmptyCredentials = !username || !password;
 
     if (isEmptyCredentials) {
@@ -37,8 +37,8 @@ export class LoginService {
       throw new UnauthorizedException();
     }
 
-    const jwt: JWT = { sub: user.id };
-    const jwtResult: JWTResult = { accessToken: this.jwtService.sign(jwt) };
+    const jwt: Jwt = { sub: user.id };
+    const jwtResult: JwtResult = { accessToken: this.jwtService.sign(jwt) };
 
     return jwtResult;
   }
