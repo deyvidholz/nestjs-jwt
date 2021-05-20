@@ -3,8 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
 import { LoginController } from './controllers/login.controller';
+import { User } from './entities/user.entity';
 import { LoginService } from './services/login.service';
 
 @Module({
