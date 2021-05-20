@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, HttpStatus } from '@nestjs/common';
 import * as faker from 'faker';
+import * as jwt from 'jsonwebtoken';
 import * as request from 'supertest';
 import { factory, useRefreshDatabase, useSeeding } from 'typeorm-seeding';
 import { AppModule } from '../src/app.module';
@@ -57,15 +58,12 @@ describe('A user make a request to the authentication in the system', () => {
 
   it('should return http status code 200 when valid credentials is given', async () => {
     const user = await factory(User)().create();
-    const payload = makePayload({
-      username: user.email,
-      password: user.email,
-    });
+    const payload = makePayload({ username: user.email, password: user.email });
+    const res = await request(app.getHttpServer()).post('/login').send(payload);
 
-    await request(app.getHttpServer())
-      .post('/login')
-      .send(payload)
-      .expect(HttpStatus.OK);
+    expect(res.status).toBe(HttpStatus.OK);
+    expect(res.body.accessToken).toBeTokenMatching({ sub: user.id });
+    expect(res.body.accessToken).toBeTokenExpiringIn('1h');
   });
 
   afterAll(async () => {
