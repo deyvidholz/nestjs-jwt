@@ -37,10 +37,8 @@ export class LoginService {
     }
 
     const jwt: JWT = { sub: user.id };
-    const jwtResult: JWTResult = {
-      accessToken: this.jwtService.sign(payload),
-    };
+    const jwtResult: JWTResult = { accessToken: this.jwtService.sign(jwt) };
 
-    return jwt;
+    return jwtResult;
   }
 }
