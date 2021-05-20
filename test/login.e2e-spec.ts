@@ -45,9 +45,9 @@ describe('A user make a request to the authentication in the system', () => {
       .expect(HttpStatus.UNAUTHORIZED));
 
   it('should return UNAUTHORIZED status when email is registered and password is incorrect', async () => {
-    const user = await factory(User)().create();
+    const { email } = await factory(User)().create();
     const payload = makePayload({
-      username: user.email,
+      username: email,
       password: faker.internet.password(),
     });
 
