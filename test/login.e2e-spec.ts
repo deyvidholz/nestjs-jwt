@@ -38,13 +38,13 @@ describe('A user make a request to the authentication in the system', () => {
       .send({ username: '', password: '' })
       .expect(HttpStatus.BAD_REQUEST));
 
-  it('should return http status code 401 when email is non-registered', () =>
+  it('should return UNAUTHORIZED status when email is non-registered', () =>
     request(app.getHttpServer())
       .post('/login')
       .send(makePayload())
       .expect(HttpStatus.UNAUTHORIZED));
 
-  it('should return http status code 401 when email is registered and password is incorrect', async () => {
+  it('should return UNAUTHORIZED status when email is registered and password is incorrect', async () => {
     const user = await factory(User)().create();
     const payload = makePayload({
       username: user.email,
@@ -57,7 +57,7 @@ describe('A user make a request to the authentication in the system', () => {
       .expect(HttpStatus.UNAUTHORIZED);
   });
 
-  it('should return http status code 200 when valid credentials is given', async () => {
+  it('should return valid jwt when valid credentials is given', async () => {
     const user = await factory(User)().create();
     const payload = makePayload({ username: user.email, password: user.email });
     const res = await request(app.getHttpServer()).post('/login').send(payload);
