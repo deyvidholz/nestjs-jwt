@@ -4,7 +4,6 @@ import { User } from '../entities/user.entity';
 
 define(User, (faker: typeof Faker) => {
   const user = new User();
-
   user.email = faker.internet.email();
   user.password = user.email;
 
