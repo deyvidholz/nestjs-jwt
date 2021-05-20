@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
+import { LoginDTO } from 'src/dtos/login.dto';
 import { Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { JWT, JWTResult } from '../typings/jwt.typing';
@@ -17,7 +18,7 @@ export class LoginService {
     private jwtService: JwtService,
   ) {}
 
-  async login(username: string, password: string): Promise<JWTResult> {
+  async login({ username, password }: LoginDTO): Promise<JWTResult> {
     const emptyCredentials = !username || !password;
 
     if (emptyCredentials) {

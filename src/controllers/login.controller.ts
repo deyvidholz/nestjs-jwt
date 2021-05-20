@@ -1,5 +1,6 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
-import { LoginService } from '../factories/login.service';
+import { LoginDTO } from '../dtos/login.dto';
+import { LoginService } from '../services/login.service';
 
 @Controller('login')
 export class LoginController {
@@ -7,10 +8,7 @@ export class LoginController {
 
   @Post()
   @HttpCode(HttpStatus.OK)
-  login(
-    @Body('username') username: string,
-    @Body('password') password: string,
-  ) {
-    return this.loginService.login(username, password);
+  login(@Body() loginDTO: LoginDTO) {
+    return this.loginService.login(loginDTO);
   }
 }
