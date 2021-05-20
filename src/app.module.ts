@@ -11,6 +11,7 @@ import { LoginService } from './services/login.service';
   imports: [
     ConfigModule.forRoot({ envFilePath: '.development.env', isGlobal: true }),
     TypeOrmModule.forRootAsync({
+      // @TODO: build options using a factory
       useFactory: (configService: ConfigService): TypeOrmModuleOptions => ({
         type: 'postgres',
         host: configService.get('POSTGRES_HOST'),
