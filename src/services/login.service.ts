@@ -19,9 +19,9 @@ export class LoginService {
   ) {}
 
   async login({ username, password }: LoginDTO): Promise<JWTResult> {
-    const emptyCredentials = !username || !password;
+    const isEmptyCredentials = !username || !password;
 
-    if (emptyCredentials) {
+    if (isEmptyCredentials) {
       throw new BadRequestException();
     }
 
