@@ -5,8 +5,8 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { LoginDTO } from 'src/dtos/login.dto';
 import { Repository } from 'typeorm';
+import { LoginDTO } from '../dtos/login.dto';
 import { User } from '../entities/user.entity';
 import { JWT, JWTResult } from '../typings/jwt.typing';
 
