@@ -6,8 +6,8 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from './entities/user.entity';
-import { JWT, JWTResult } from './typings/jwt.typing';
+import { User } from '../entities/user.entity';
+import { JWT, JWTResult } from '../typings/jwt.typing';
 
 @Injectable()
 export class LoginService {
