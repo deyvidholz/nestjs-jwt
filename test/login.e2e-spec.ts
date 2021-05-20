@@ -1,7 +1,6 @@
-import { HttpStatus, INestApplication, } from '@nestjs/common';
+import { HttpStatus, INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as faker from 'faker';
-import * as jwt from 'jsonwebtoken';
 import * as request from 'supertest';
 import { factory, useRefreshDatabase, useSeeding } from 'typeorm-seeding';
 import { AppModule } from '../src/app.module';
