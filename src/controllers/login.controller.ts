@@ -5,7 +5,7 @@ import { JwtResult } from '../typings/jwt.typings';
 
 @Controller('login')
 export class LoginController {
-  constructor(private readonly loginService: LoginService) {}
+  constructor(private loginService: LoginService) {}
 
   @Post()
   @HttpCode(HttpStatus.OK)
