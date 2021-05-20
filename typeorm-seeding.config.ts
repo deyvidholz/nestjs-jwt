@@ -1,3 +1,4 @@
+// @TODO: build options using a factory
 const typeormForSeedConfig = {
   type: 'postgres',
   host: process.env.POSTGRES_HOST,
