@@ -1,5 +1,5 @@
+import { HttpStatus, INestApplication, } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication, HttpStatus } from '@nestjs/common';
 import * as faker from 'faker';
 import * as jwt from 'jsonwebtoken';
 import * as request from 'supertest';
