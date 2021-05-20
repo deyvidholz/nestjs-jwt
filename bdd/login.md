@@ -1,24 +1,24 @@
-Scenario: A user make a request to the authentication in the system.
+Scenario: A user make a request to the authentication in the system with bad formated credentails.
 Given: I set a payload with a bad formated email OR password
 When: I post to /auth
 Then: I receive a http status code of 400.
 
-Scenario: A user make a request to the authentication in the system.
+Scenario: A user make a request to the authentication in the system with empty payload.
 Given: I set a empty payload
 When: I post to /auth
 Then: I receive a http status code of 400
 
-Scenario: A user make a request to the authentication in the system.
+Scenario: A user make a request to the authentication in the system with non-registered email.
 Given: I set up a payload with a non-registered email
 When: I post to /auth
 Then: I receive a http status code of 401
 
-Scenario: A user make a request to the authentication in the system.
+Scenario: A user make a request to the authentication in the system with wrong password.
 Given: I set a mismatching password in the payload
 When: I post to /auth
 Then: I receive a http status code of 401
 
-Scenario: A user make a request to the authentication in the system.
+Scenario: A user make a request to the authentication in the system with valid credentials.
 Given: I set up a payload with valid credentials (email AND password)
 When: I post to /auth
 Then: I receive a status code of 200
