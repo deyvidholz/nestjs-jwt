@@ -1,4 +1,5 @@
 import { HttpStatus, INestApplication } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as faker from 'faker';
 import * as request from 'supertest';
@@ -59,10 +60,11 @@ describe('A user make a request to the authentication in the system', () => {
     const user = await factory(User)().create();
     const payload = makePayload({ username: user.email, password: user.email });
     const res = await request(app.getHttpServer()).post('/login').send(payload);
+    const jwtExpiresIn = app.get(ConfigService).get('JWT_EXPIRES_IN');
 
     expect(res.status).toBe(HttpStatus.OK);
     expect(res.body.accessToken).toBeTokenMatching({ sub: user.id });
-    expect(res.body.accessToken).toBeTokenExpiringIn('1h');
+    expect(res.body.accessToken).toBeTokenExpiringIn(jwtExpiresIn);
   });
 
   afterAll(async () => {
