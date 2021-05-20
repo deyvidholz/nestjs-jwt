@@ -32,7 +32,7 @@ describe('A user make a request to the authentication in the system', () => {
     await useSeeding();
   });
 
-  it('should return http status code 400 when email or password is bad formated', () =>
+  it('should return BAD_REQUEST status when email or password is bad formated', () =>
     request(app.getHttpServer())
       .post('/login')
       .send({ username: '', password: '' })
