@@ -23,6 +23,7 @@ import { LoginService } from './services/login.service';
             : 'auth_test_db',
         autoLoadEntities: true,
         synchronize: process.env.NODE_ENV !== 'production',
+        logging: process.env.NODE_ENV !== 'test',
       }),
       inject: [ConfigService],
     }),
