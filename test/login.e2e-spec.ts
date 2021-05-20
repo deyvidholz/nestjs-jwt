@@ -5,12 +5,13 @@ import * as faker from 'faker';
 import * as request from 'supertest';
 import { factory, useRefreshDatabase, useSeeding } from 'typeorm-seeding';
 import { AppModule } from '../src/app.module';
+import { LoginDTO } from '../src/dtos/login.dto';
 import { User } from '../src/entities/user.entity';
 
 describe('A user make a request to the authentication in the system', () => {
   let app: INestApplication;
 
-  const makePayload = (payload?: { username?: string; password?: string }) =>
+  const makePayload = (payload?: Partial<LoginDTO>) =>
     Object.assign(
       {
         username: faker.internet.email(),
