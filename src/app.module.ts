@@ -5,7 +5,7 @@ import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { LoginController } from './controllers/login.controller';
-import { LoginService } from './factories/login.service';
+import { LoginService } from './services/login.service';
 
 @Module({
   imports: [
