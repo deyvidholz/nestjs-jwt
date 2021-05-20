@@ -61,14 +61,14 @@ To generate the project documentation use `yarn doc`, it will generate the docum
 
 ## TODO
 
-[ ] Add openapi documentation to get swagger working on a custom endpoint  
-[ ] Add custom exception per error type. It will be helpful to watch logs on production  
-[ ] Add unit tests  
-[ ] Add logger  
-[ ] Check if environment variables are loading correctly  
-[ ] Add migrations  
-[ ] Add healthcheck to get database status  
-[ ] Make this app production ready
+- [ ] Add openapi documentation to get swagger working on a custom endpoint
+- [ ] Add custom exception per error type. It will be helpful to watch logs on production
+- [ ] Add unit tests
+- [ ] Add logger
+- [ ] Check if environment variables are loading correctly
+- [ ] Add migrations
+- [ ] Add healthcheck to get database status
+- [ ] Make this app production ready
 
 ## Support
 
