@@ -36,8 +36,8 @@ export class LoginService {
       throw new UnauthorizedException();
     }
 
-    const payload: JWT = { sub: user.id };
-    const jwt: JWTResult = {
+    const jwt: JWT = { sub: user.id };
+    const jwtResult: JWTResult = {
       accessToken: this.jwtService.sign(payload),
     };
 
