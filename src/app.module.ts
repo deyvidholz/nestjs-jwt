@@ -22,7 +22,7 @@ import { LoginService } from './services/login.service';
             ? configService.get('POSTGRES_DB')
             : 'auth_test_db',
         autoLoadEntities: true,
-        synchronize: true,
+        synchronize: process.env.NODE_ENV !== 'production',
       }),
       inject: [ConfigService],
     }),
