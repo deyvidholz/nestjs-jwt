@@ -59,6 +59,17 @@ $ yarn test:cov
 
 To generate the project documentation use `yarn doc`, it will generate the documentation usually on http://localhost:8080.
 
+## TODO
+
+[ ] Add openapi documentation to get swagger working on a custom endpoint
+[ ] Add custom exception per error type. It will be helpful to watch logs on production
+[ ] Add unit tests
+[ ] Add logger
+[ ] Check if environment variables are loading correctly
+[ ] Add migrations
+[ ] Add healthcheck to get database status
+[ ] Make this app production ready
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
