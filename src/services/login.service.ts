@@ -13,9 +13,9 @@ import { JWT, JWTResult } from '../typings/jwt.typing';
 @Injectable()
 export class LoginService {
   constructor(
+    private jwtService: JwtService,
     @InjectRepository(User)
     private usersRepository: Repository<User>,
-    private jwtService: JwtService,
   ) {}
 
   async login({ username, password }: LoginDTO): Promise<JWTResult> {
