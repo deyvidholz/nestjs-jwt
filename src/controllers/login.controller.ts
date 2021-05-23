@@ -9,9 +9,7 @@ export class LoginController {
   constructor(private loginService: LoginService) {}
 
   @ApiTags('Login')
-  @ApiBody({
-    type: LoginDTO,
-  })
+  @ApiBody({ type: LoginDTO })
   @Post()
   @HttpCode(HttpStatus.OK)
   login(@Body() loginDTO: LoginDTO): Promise<JwtResult> {
