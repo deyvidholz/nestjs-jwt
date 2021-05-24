@@ -5,10 +5,9 @@ import { LoginService } from '../services/login.service';
 import { JwtResult } from '../typings/jwt.typings';
 
 @Controller('login')
+@ApiTags('Login')
 export class LoginController {
   constructor(private loginService: LoginService) {}
-
-  @ApiTags('Login')
   @ApiBody({ type: LoginDTO })
   @Post()
   @HttpCode(HttpStatus.OK)
