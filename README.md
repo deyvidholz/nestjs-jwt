@@ -63,7 +63,6 @@ Since the app is running, you can access `/api` route to check out the API docum
 
 ## TODO
 
-- [x] Add openapi documentation to get swagger working on a custom endpoint
 - [ ] Add custom exception per error type. It will be helpful to watch logs on production
 - [ ] Add unit tests
 - [ ] Add logger
