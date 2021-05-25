@@ -57,10 +57,17 @@ $ yarn test:cov
 
 ## Documentation
 
-To generate the project documentation use `yarn doc`, it will generate the documentation usually on http://localhost:8080.
+The documentation offers two options: **Swagger** to inspect the API endpoints and **Compodoc** to inspect the application components.
 
-After start the app, you can access `/swagger` route in order to use the playground which allows you to test the API routes manually.
+### Swagger
+
+After start the app, access `/swagger` route in order to use the playground which allows manually tests in the API routes.
 It will also provide all the models and routes available in the application.
+
+### Compodoc
+
+To generate the project documentation use `yarn doc`, it will generate the documentation usually on http://localhost:8080, it
+contains the core of all the application components.
 
 ## TODO
 
