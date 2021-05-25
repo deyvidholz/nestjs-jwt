@@ -4,8 +4,8 @@ import { LoginDTO } from '../dtos/login.dto';
 import { LoginService } from '../services/login.service';
 import { JwtResult } from '../typings/jwt.typings';
 
+@ApiTags('login')
 @Controller('login')
-@ApiTags('Login')
 export class LoginController {
   constructor(private loginService: LoginService) {}
 
