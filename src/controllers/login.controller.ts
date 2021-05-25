@@ -8,7 +8,7 @@ import {
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { LoginDTO } from '../dtos/login.dto';
-import { JwtResult } from '../models/jwt.model';
+import { JwtResult } from '../models/jwt-result.model';
 import { LoginService } from '../services/login.service';
 
 @ApiTags('login')
