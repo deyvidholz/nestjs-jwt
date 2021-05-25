@@ -8,7 +8,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { LoginDTO } from '../dtos/login.dto';
 import { User } from '../entities/user.entity';
-import { Jwt, JwtResult } from '../typings/jwt.typings';
+import { JwtResult } from '../models/jwt.model';
+import { Jwt } from '../typings/jwt.typings';
 
 @Injectable()
 export class LoginService {
