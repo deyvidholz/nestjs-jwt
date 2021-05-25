@@ -65,7 +65,7 @@ describe('A user make a request to the authentication in the system', () => {
       .send(payload);
     const jwtExpiresIn = app.get(ConfigService).get('JWT_EXPIRES_IN');
 
-    expect(status).toBe(HttpStatus.OK);
+    expect(status).toBe(HttpStatus.CREATED);
     expect(body.accessToken).toBeTokenMatching({ sub: id });
     expect(body.accessToken).toBeTokenExpiringIn(jwtExpiresIn);
   });
