@@ -1,13 +1,12 @@
-import {
-  BadRequestException,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { LoginDTO } from '../dtos/login.dto';
 import { User } from '../entities/user.entity';
+import { EmptyCredentials } from '../exceptions/empty-credentials.exception';
+import { InvalidPassword } from '../exceptions/invalid-password.exception';
+import { InvalidUsername } from '../exceptions/invalid-username.exception';
 import { JwtResult } from '../models/jwt-result.model';
 import { Jwt } from '../typings/jwt.typings';
 
@@ -23,19 +22,19 @@ export class LoginService {
     const isEmptyCredentials = !username || !password;
 
     if (isEmptyCredentials) {
-      throw new BadRequestException();
+      throw new EmptyCredentials();
     }
 
     const user = await this.usersRepository.findOne({ email: username });
 
     if (!user) {
-      throw new UnauthorizedException();
+      throw new InvalidUsername(username);
     }
 
     const isInvalidPassword = !user.isValidPassword(password);
 
     if (isInvalidPassword) {
-      throw new UnauthorizedException();
+      throw new InvalidPassword();
     }
 
     const jwt: Jwt = { sub: user.id };
