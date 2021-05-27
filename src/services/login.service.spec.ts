@@ -57,14 +57,14 @@ describe('LoginService', () => {
     );
   });
 
-  it('should throw InvalidUsername', async () => {
+  it('should throw InvalidUsername when user was not found', async () => {
     jest.spyOn(repository, 'findOne').mockImplementationOnce(() => null);
     await expect(service.login(loginDTOMock)).rejects.toThrowError(
       InvalidUsername,
     );
   });
 
-  it('should throw InvalidPassword', async () => {
+  it('should throw InvalidPassword when password does not match', async () => {
     jest.spyOn(userMock, 'isValidPassword').mockImplementationOnce(() => false);
     await expect(service.login(loginDTOMock)).rejects.toThrowError(
       InvalidPassword,
