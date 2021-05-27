@@ -23,7 +23,8 @@ describe('LoginController', () => {
   });
 
   it('should return a JWT', async () => {
+    const login = jest.spyOn(service, 'login');
     expect(await controller.login(loginDTOMock)).toBe(jwtResultMock);
-    expect(service.login).toHaveBeenCalledWith(loginDTOMock);
+    expect(login).toHaveBeenCalledWith(loginDTOMock);
   });
 });
