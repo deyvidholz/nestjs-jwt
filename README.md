@@ -71,8 +71,6 @@ contains the core of all the application components.
 
 ## TODO
 
-- [ ] Add custom exception per error type. It will be helpful to watch logs on production
-- [ ] Add unit tests
 - [ ] Add logger
 - [ ] Check if environment variables are loading correctly
 - [ ] Add migrations
