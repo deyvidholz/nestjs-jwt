@@ -1,6 +1,6 @@
 import * as faker from 'faker';
 import { JwtResult } from '../jwt-result.model';
 
-export const JwtResultMock: JwtResult = {
+export const jwtResultMock: JwtResult = {
   accessToken: faker.internet.password(),
 };
