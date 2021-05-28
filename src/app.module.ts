@@ -14,7 +14,6 @@ import { LoginService } from './services/login.service';
       envFilePath: '.development.env',
       isGlobal: true,
       validationSchema: Joi.object({
-        NODE_ENV: Joi.string().default('test').valid('production', 'test'),
         POSTGRES_HOST: Joi.string(),
         POSTGRES_PORT: Joi.number().integer(),
         POSTGRES_USER: Joi.string(),
