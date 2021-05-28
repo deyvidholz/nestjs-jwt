@@ -22,6 +22,10 @@ import { LoginService } from './services/login.service';
         JWT_SECRET: Joi.string().min(6),
         JWT_EXPIRES_IN: Joi.string().regex(/\d+[A-Za-z]+/),
       }),
+      validationOptions: {
+        allowUnknown: false,
+        abortEarly: true,
+      },
     }),
     TypeOrmModule.forRootAsync({
       // @TODO: build options using a factory
