@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule, JwtModuleOptions } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
+import * as Joi from 'joi';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { LoginController } from './controllers/login.controller';
 import { User } from './entities/user.entity';
@@ -9,7 +10,20 @@ import { LoginService } from './services/login.service';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ envFilePath: '.development.env', isGlobal: true }),
+    ConfigModule.forRoot({
+      envFilePath: '.development.env',
+      isGlobal: true,
+      validationSchema: Joi.object({
+        NODE_ENV: Joi.string().default('test').valid('production', 'test'),
+        POSTGRES_HOST: Joi.string(),
+        POSTGRES_PORT: Joi.number().integer(),
+        POSTGRES_USER: Joi.string(),
+        POSTGRES_PASSWORD: Joi.string(),
+        POSTGRES_DB: Joi.string(),
+        JWT_SECRET: Joi.string().min(6),
+        JWT_EXPIRES_IN: Joi.string().regex(/\d+[A-Za-z]+/),
+      }),
+    }),
     TypeOrmModule.forRootAsync({
       // @TODO: build options using a factory
       useFactory: (configService: ConfigService): TypeOrmModuleOptions => ({
